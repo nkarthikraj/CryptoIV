@@ -12,81 +12,98 @@ using ip::tcp;
 using namespace std;
 using namespace MyPropertyTree;
 
+std::atomic<int> countAtomic = 0;
+
 class Sender
 {
-  private:
 
-      std::atomic<int> count = 0;
-      common::PropertyData m_propertyData;
+    std::vector<std::jthread> m_senderThreadPool;
+    int numberOfThread{ 1 };
 
-  public:
+public:
 
-     void send(vector<uint8_t>& iBuffer)
-     {
-            boost::asio::io_service io_service;
+    Sender(const int iNoOfThreads) :numberOfThread(iNoOfThreads)
+    {}
+    ///////////////////////////////////////////////////////////
+    void start()
+    {
+        for (int i = 0; i < numberOfThread; i++)
+        {
+            m_senderThreadPool.push_back(std::jthread(&Sender::sender, this));
+            std::this_thread::sleep_for(5s);
+        }
+    }
+    ///////////////////////////////////////////////////////////
+    void send(vector<uint8_t>& iBuffer)
+    {
+        boost::asio::io_service io_service;
 
-            //socket creation
-            tcp::socket socket(io_service);
+        //socket creation
+        tcp::socket socket(io_service);
 
-            //connection
-            socket.connect(tcp::endpoint(boost::asio::ip::address::from_string("127.0.0.1"), 1234));
+        //connection
+        socket.connect(tcp::endpoint(boost::asio::ip::address::from_string("127.0.0.1"), 1234));
 
-            // request/message from client
-            boost::system::error_code error;
-            boost::asio::write(socket, boost::asio::buffer(iBuffer), error);
+        // request/message from client
+        boost::system::error_code error;
+        boost::asio::write(socket, boost::asio::buffer(iBuffer), error);
 
-            if (!error)
-            {
-                cout << "Client sent buffer successfully" << endl;
-            }
-            else
-            {
-                cout << "Sending of buffer failed: " << error.message() << endl;
-            }
-     }
-
+        if (error)
+        {
+            cout << "Sending of buffer failed: " << error.message() << endl;
+        }
+    }
+    ///////////////////////////////////////////////////////////
     void readBuffer(vector<uint8_t>& buffer)
     {
-         uint8_t* buffer_ptr = &buffer[0];
+        uint8_t* buffer_ptr = &buffer[0];
 
-         auto property = GetProperty(buffer_ptr);
+        auto property = GetProperty(buffer_ptr);
 
-         cout << property->name()->str() << endl;
-         cout << property->value()->str() << endl;
-         cout << property->type() << endl;
+        stringstream ss;
 
-         for (int i = 0; i < property->subprop()->size(); i++)
-         {
-              cout << property->subprop()->Get(i)->data1()->str() << endl;
-              cout << property->subprop()->Get(i)->data2() << endl;
-         }
+        ss << "-----Start----" << endl;
 
-         cout << "-----XXXX----" << endl;
+        ss << property->name()->str() << endl;
+        ss << property->value()->str() << endl;
+        ss << property->type() << endl;
+
+        for (int i = 0; i < property->subprop()->size(); i++)
+        {
+            ss << property->subprop()->Get(i)->data1()->str() << endl;
+            ss << property->subprop()->Get(i)->data2() << endl;
+        }
+
+        ss << "-----End----" << endl;
+
+        cout << ss.str() << endl;
     }
-
+    ///////////////////////////////////////////////////////////
     void updateBuffer(vector<uint8_t>& buffer)
     {
-         auto property = GetMutableProperty(&buffer[0]);
-         property->mutate_type(MyPropertyTree::Type_V);
+        auto property = GetMutableProperty(&buffer[0]);
+        property->mutate_type(MyPropertyTree::Type_V);
     }
-
-    void senderThread()
+    ///////////////////////////////////////////////////////////
+    void sender()
     {
         while (true)
         {
             vector<uint8_t> buffer;
 
-            const int var = count.fetch_add(1) ;
+            const int var = countAtomic.fetch_add(1);
 
-            stringstream ss; 
-            
+            stringstream ss;
+
             ss << this_thread::get_id() << " :: Message Count :" << var;
 
-            m_propertyData.createBuffer(buffer, ss.str());
+            common::PropertyData propertyData;
 
-            readBuffer(buffer);
+            propertyData.createBuffer(buffer, ss.str());
 
             updateBuffer(buffer);
+
+            readBuffer(buffer);
 
             send(buffer);
 
@@ -97,17 +114,9 @@ class Sender
 
 int main()
 {
-    std::vector<std::jthread> threadGrp;
+    Sender senderObj(3/*No of threads*/);
 
-    Sender senderObj;
-
-    for (int i = 0; i < 1; i++)
-    {
-        //threadGrp.push_back(std::jthread(&Sender::senderThread, ref(senderObj)));
-    }
-
-    senderObj.senderThread();
-
+    senderObj.start();
     
     return 0;
 }

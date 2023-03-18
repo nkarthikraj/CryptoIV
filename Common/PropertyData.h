@@ -83,30 +83,34 @@ namespace common
 
 			memcpy(&oBuffer[0], builder.GetBufferPointer(), builder.GetSize());
 
-			cout << "Size:" << builder.GetSize()  << endl;
+			//cout << "Size:" << builder.GetSize()  << endl;
 		}
 
 		void print()
 		{
-			cout << "---------" << endl;
+			stringstream ss;
 
-			cout << m_name << endl;
-			cout << m_value << endl;
+			ss << "-----Start----" << endl;
+
+			ss << m_name << endl;
+			ss << m_value << endl;
 
 			if(m_type == Type::X) 
-				cout << "X"  << endl;
+				ss << "X"  << endl;
 			else if (m_type == Type::Y)
-				cout << "Y" << endl;
+				ss << "Y" << endl;
 			else if (m_type == Type::V)
-				cout << "V" << endl;
+				ss << "V" << endl;
 
 			for(const auto& it : m_subproperty)
 			{
-				cout << it.m_data1 << endl;
-				cout << it.m_data2 << endl;
+				ss << it.m_data1 << endl;
+				ss << it.m_data2 << endl;
 			}
 
-			cout << "----XXX-----" << endl;
+			ss << "-----End----" << endl;
+
+			cout << ss.str() << endl;
 		}
 	};
 };
