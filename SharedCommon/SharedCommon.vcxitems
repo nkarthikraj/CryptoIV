@@ -37,6 +37,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\minireflect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\pch\flatc_pch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\pch\pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\reflection.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\reflection_generated.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\registry.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\stl_emulation.h" />
@@ -49,5 +50,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\verifier.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\PropertyTree_generated.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\reflection_generated.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\flatbuffers\src\reflection.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\flatbuffers\src\util.cpp" />
   </ItemGroup>
 </Project>

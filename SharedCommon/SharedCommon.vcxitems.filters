@@ -105,5 +105,16 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\pch\pch.h">
       <Filter>flatbuffers\include\flatbuffers\pch</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\reflection.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\flatbuffers\src\reflection.cpp">
+      <Filter>flatbuffers\src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\flatbuffers\src\util.cpp">
+      <Filter>flatbuffers\src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

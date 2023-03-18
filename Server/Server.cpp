@@ -7,6 +7,7 @@
 #include "PropertyData.h"
 #include <mutex>
 #include "flatbuffers/reflection.h"
+#include "flatbuffers/util.h"
 #include <queue>
 //#include "flatbuffers/reflection_generated.h"
 //#include "flatbuffers/minireflect.h"
@@ -109,7 +110,9 @@ public:
              {
                   if (false) /* reflection method */
                   {
-                        std::string bfbsfile("PropertyTree.bfbs");
+                        std::string bfbsfile;
+
+                        flatbuffers::LoadFile(string("..\/flatbuffers\/PropertyTree.bfbs").c_str(), true, &bfbsfile);
 
                         auto& schema = *reflection::GetSchema(bfbsfile.c_str());
 
@@ -117,24 +120,30 @@ public:
 
                         auto fields = root_table->fields();
 
-                        auto name_field_ptr = fields->LookupByKey("name");
+                        auto& name_field = *(fields->LookupByKey("name"));
 
-                        auto& name_field = *name_field_ptr;
+                        auto& value_field = *(fields->LookupByKey("value"));
 
-                        auto value_field_ptr = fields->LookupByKey("value");
+                        auto& type_field = *(fields->LookupByKey("type"));
+                  
+                        auto& root = *flatbuffers::GetAnyRoot((const uint8_t*)&(buf[0]));
 
-                        auto& value_field = *value_field_ptr;
+                        auto name = flatbuffers::GetAnyFieldS(root, name_field, & schema);
 
-                        //TODO:Couldnt finish it due to time constraint
+                        auto value = flatbuffers::GetAnyFieldS(root, name_field, &schema);
+
+                        auto type = flatbuffers::GetAnyFieldI(root, type_field);
+
+                        cout << "name:" << name << endl;
+                        cout << "value:" << value << endl;
+                        cout << "Type:" << type << endl;
+
+                        //TODO: Couldnt figure out how to read the tables using reflection
                         // 
-                        //  auto& root = *flatbuffers::GetAnyRoot(boost::asio::buffer_cast<const uint8_t*>(buf.data()));
+                        //auto& pos_table = *(fields->LookupByKey("subprop"));
 
-                          // auto name = flatbuffers::GetAnyFieldS(root, name_field, & schema);
-
-                           //auto value = flatbuffers::GetAnyFieldS(root, name_field, &schema);
-
-                          // cout << "name:" << name << endl;
-                          // cout << "value:" << value << endl;
+                        //auto subpropTable = flatbuffers::GetFieldT(root, pos_table);
+                        
                   }
                   else /*Non Reflection method*/
                   {
