@@ -1,0 +1,19 @@
+// example IDL file
+
+namespace MyPropertyTree;
+
+enum Type : byte { X = 1, V, Y }
+
+table Property {
+   name:string;
+   value:string;
+   type:Type = 1;
+   subprop : [SubProperty];
+}
+
+table SubProperty {
+  data1:string;
+  data2:short;
+}
+
+root_type Property;

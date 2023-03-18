@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="flatbuffers">
+      <UniqueIdentifier>{9c98b865-98f4-45ff-99bd-62c5ee6e7633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flatbuffers\include">
+      <UniqueIdentifier>{f17e3955-21ea-44a8-9e5c-a3d43c00942f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flatbuffers\include\flatbuffers">
+      <UniqueIdentifier>{b0c84613-db60-4999-8bb8-d7be3720dc5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flatbuffers\include\flatbuffers\pch">
+      <UniqueIdentifier>{da25374b-0a14-4bbb-adf1-52f0a0827c27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flatbuffers\src">
+      <UniqueIdentifier>{b0bb855a-07a1-472c-bb2a-557abca5f5f1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\allocator.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\array.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\base.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\buffer.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\buffer_ref.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\code_generator.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\code_generators.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\default_allocator.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\detached_buffer.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\flatbuffer_builder.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\flatbuffers.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\flex_flat_util.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\flexbuffers.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\grpc.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\hash.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\idl.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\minireflect.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\reflection_generated.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\registry.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\stl_emulation.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\string.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\struct.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\table.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\util.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\vector.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\vector_downward.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\verifier.h">
+      <Filter>flatbuffers\include\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\pch\flatc_pch.h">
+      <Filter>flatbuffers\include\flatbuffers\pch</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\pch\pch.h">
+      <Filter>flatbuffers\include\flatbuffers\pch</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

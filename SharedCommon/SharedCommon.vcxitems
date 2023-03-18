@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{8af5ec6e-0c51-4f56-9ef5-b1ee875c751f}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\flatbuffers\PropertyTree.bfbs" />
+    <None Include="$(MSBuildThisFileDirectory)..\flatbuffers\PropertyTree.fbs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\allocator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\array.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\base.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\buffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\buffer_ref.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\code_generator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\code_generators.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\default_allocator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\detached_buffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\flatbuffers.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\flatbuffer_builder.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\flexbuffers.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\flex_flat_util.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\grpc.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\hash.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\idl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\minireflect.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\pch\flatc_pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\pch\pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\reflection_generated.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\registry.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\stl_emulation.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\string.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\struct.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\table.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\util.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\vector.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\vector_downward.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\include\flatbuffers\verifier.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\PropertyTree_generated.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\flatbuffers\reflection_generated.h" />
+  </ItemGroup>
+</Project>
