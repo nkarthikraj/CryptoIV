@@ -29,7 +29,7 @@ private:
     std::condition_variable cv;
     std::vector<std::jthread> m_consumerThreadPool;
     std::vector<std::jthread> m_producerThreadPool;
-    int numberOfThread{ 1 };
+    const int numberOfThread{ 1 };
 
 public:
 
@@ -107,8 +107,8 @@ public:
 
              if (!buf.empty())
              {
-                  if (false) /* reflection */
-                    {
+                  if (false) /* reflection method */
+                  {
                         std::string bfbsfile("PropertyTree.bfbs");
 
                         auto& schema = *reflection::GetSchema(bfbsfile.c_str());
@@ -125,6 +125,8 @@ public:
 
                         auto& value_field = *value_field_ptr;
 
+                        //TODO:Couldnt finish it due to time constraint
+                        // 
                         //  auto& root = *flatbuffers::GetAnyRoot(boost::asio::buffer_cast<const uint8_t*>(buf.data()));
 
                           // auto name = flatbuffers::GetAnyFieldS(root, name_field, & schema);
@@ -133,8 +135,8 @@ public:
 
                           // cout << "name:" << name << endl;
                           // cout << "value:" << value << endl;
-                    }
-                  else
+                  }
+                  else /*Non Reflection method*/
                   {
                        auto propertyPtr = GetProperty(&(buf[0]));
 
@@ -145,7 +147,6 @@ public:
                        propertyData.print();
                   }
              }
-
              unique_lock<mutex> lock(syncLock);
              cv.wait(lock, [&]() { return !m_consumer.empty(); });
         }
@@ -154,7 +155,7 @@ public:
 
 int main()
 {
-    Receiver receiverObj(6/*No of threads*/);
+    Receiver receiverObj(2/*No of threads*/);
 
     receiverObj.start();
 

@@ -1,6 +1,3 @@
-// Client.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <fstream>
 #include <boost/asio.hpp>
@@ -12,25 +9,22 @@ using ip::tcp;
 using namespace std;
 using namespace MyPropertyTree;
 
-std::atomic<int> countAtomic = 0;
-
 class Sender
 {
-
     std::vector<std::jthread> m_senderThreadPool;
-    int numberOfThread{ 1 };
+    std::atomic<int> countAtomic = 0;
+    const int numberOfThread{ 1 };
 
 public:
 
-    Sender(const int iNoOfThreads) :numberOfThread(iNoOfThreads)
-    {}
+    Sender(const int iNoOfThreads) :numberOfThread(iNoOfThreads){}
     ///////////////////////////////////////////////////////////
     void start()
     {
         for (int i = 0; i < numberOfThread; i++)
         {
             m_senderThreadPool.push_back(std::jthread(&Sender::sender, this));
-            std::this_thread::sleep_for(5s);
+            std::this_thread::sleep_for(1s);
         }
     }
     ///////////////////////////////////////////////////////////
@@ -64,14 +58,14 @@ public:
 
         ss << "-----Start----" << endl;
 
-        ss << property->name()->str() << endl;
-        ss << property->value()->str() << endl;
-        ss << property->type() << endl;
+        ss << "Name:" << property->name()->str() << endl;
+        ss << "Value:" << property->value()->str() << endl;
+        ss << "Type:" << property->type() << endl;
 
         for (int i = 0; i < property->subprop()->size(); i++)
         {
-            ss << property->subprop()->Get(i)->data1()->str() << endl;
-            ss << property->subprop()->Get(i)->data2() << endl;
+            ss << "Data1:" << property->subprop()->Get(i)->data1()->str() << endl;
+            ss << "Data1:" << property->subprop()->Get(i)->data2() << endl;
         }
 
         ss << "-----End----" << endl;
@@ -107,14 +101,14 @@ public:
 
             send(buffer);
 
-            std::this_thread::sleep_for(10s);
+            std::this_thread::sleep_for(1s);
         }
     }
 };
 
 int main()
 {
-    Sender senderObj(3/*No of threads*/);
+    Sender senderObj(1/*No of threads*/);
 
     senderObj.start();
     

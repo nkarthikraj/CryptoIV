@@ -27,13 +27,15 @@ namespace common
 		std::string m_value;
 		Type m_type;
 		std::vector<SubPropertyData> m_subproperty;
+		const size_t subpropertySize{ 3 };
 
 	public:
 		PropertyData():m_name("PropertyName"), m_value("PropertyValue"), m_type(Type::X)
 		{
-			for (int i = 0; i < 1; i++)
+			for (int i = 1; i <= subpropertySize; i++)
 			{
-				m_subproperty.emplace_back("Data1", i);
+				stringstream ss; ss << i;
+				m_subproperty.emplace_back("DataValue" + ss.str(), i);
 			}
 		}
 		void convertBufferToCppObject(const MyPropertyTree::Property* iPropertyPtr)
@@ -62,7 +64,7 @@ namespace common
 
 			std::vector<flatbuffers::Offset<SubProperty>> subProperty_vector;
 
-			for (int i = 0; i < 1; i++)
+			for (int i = 0; i < subpropertySize; i++)
 			{
 				auto stringData = builder.CreateString(m_subproperty[i].m_data1 + " : " + iIdentifier);
 
@@ -92,8 +94,9 @@ namespace common
 
 			ss << "-----Start----" << endl;
 
-			ss << m_name << endl;
-			ss << m_value << endl;
+			ss << "Name:" << m_name << endl;
+			ss << "Value:" << m_value << endl;
+			ss << "Type:";
 
 			if(m_type == Type::X) 
 				ss << "X"  << endl;
@@ -104,8 +107,8 @@ namespace common
 
 			for(const auto& it : m_subproperty)
 			{
-				ss << it.m_data1 << endl;
-				ss << it.m_data2 << endl;
+				ss << "Data1:" << it.m_data1 << endl;
+				ss << "Data2:" << it.m_data2 << endl;
 			}
 
 			ss << "-----End----" << endl;
